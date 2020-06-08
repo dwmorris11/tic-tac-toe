@@ -1,13 +1,29 @@
 window.onload = function () {
 //model
 var board = [["","",""],["","",""],["","",""]];
-var player = ['X', 'O']
-var turn = player[0];
+var player = ['X', 'O'];
+var previousWinner = player[0];
+var turn = previousWinner;
 var counter = 0;
+var xWins = 0;
+var oWins = 0;
+var xPlayer = '';
+var oPlayer = '';
 
 //diagnol winners
 //R1[0],R2[1],R3[2]
 //R1[2],R2[1],R3[0]
+score();
+var updateVariablesOnWin = function() {
+  previousWinner = turn;
+  displayWinner(turn, false);
+  if(turn === 'X'){
+    xWins++;
+  }else {
+    oWins++;
+  }
+  score();
+}
 
 var checkForWinner = function() {
 
@@ -15,14 +31,14 @@ var checkForWinner = function() {
     //check columns
     if( board[0][i] === board[1][i] && board[0][i] === board[2][i] ) {
       if(board[0][i] !== ""){
-        displayWinner(turn, false);
+        updateVariablesOnWin();
         return;
       }
     }
     //check rows
     if( board[i][0] === board[i][1] && board[i][0] === board[i][2]) {
       if(board[i][0] !==""){
-        displayWinner(turn, false);
+        updateVariablesOnWin();
         return;
       }
     }
@@ -30,14 +46,14 @@ var checkForWinner = function() {
   //check major diagnol
   if(board[0][0] === board[1][1] && board[0][0] === board [2][2]){
     if(board[0][0] !== "") {
-       displayWinner(turn, false);
-       return;
+      updateVariablesOnWin();
+      return;
     }
   }
   //check minor diagnol
   if(board[0][2] === board[1][1] && board[0][2] === board [2][0]){
     if(board[0][2] !== "") {
-      displayWinner(turn, false);
+      updateVariablesOnWin();
       return;
     }
   }
@@ -76,8 +92,11 @@ for(var i=0;i<9;i++) {
   el.addEventListener("click", (e)=>modifyText(el), false);
 }
 
-const el = document.getElementById('new');
+let el = document.getElementById('new');
 el.addEventListener('click', (e)=>resetGame(e), false);
+
+el = document.getElementById('start');
+el.addEventListener('click', (e)=>startGame(e), false);
 
 
 //view
@@ -89,8 +108,10 @@ var displayWinner = function(player, toggle) {
   const el = document.getElementById("winner");
   if(player === -1){
     el.innerText =`GAME IS A TIE!!`;
+  }else if(player='X') {
+    el.innerText = `${xPlayer} is the winner!!`;
   }else {
-    el.innerText = `${player} is the winner!!`;
+    el.innerText = `${oPlayer} is the winner!!`;
   }
   el.hidden = toggle;
 }
@@ -100,7 +121,7 @@ var resetGame = function(e) {
   //reset board model
   board = [["","",""],["","",""],["","",""]];
   player = ['X', 'O']
-  turn = player[0];
+  turn = previousWinner;
   counter = 0;
   //reset view
   var els = document.getElementsByClassName('grid-item');
@@ -108,5 +129,24 @@ var resetGame = function(e) {
     els[i].innerText = "";
   }
   displayWinner(-1,true);
+  score();
+}
+
+function score () {
+  var x = document.getElementById('x');
+  var o = document.getElementById('l');
+  x.innerText = `${xPlayer}: ${xWins}`;
+  o.innerText = `${oPlayer}: ${oWins}`;
+}
+
+function startGame (e) {
+  e.preventDefault();
+  xPlayer = (document.getElementById('xPlayer')).value;
+  oPlayer = (document.getElementById('oPlayer')).value;
+  let names = document.getElementsByClassName('names');
+  names[0].hidden = true;
+  let game = document.getElementsByClassName('game');
+  game[0].hidden = false;
+  score();
 }
 }

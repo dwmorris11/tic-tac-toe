@@ -2,25 +2,38 @@
 
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Tic-Tac-Toe</title>
     <meta name="Tic-Tac-Toe" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="app.js"></script>
   </head>
   <body>
-    <h1><div id="winner" hidden></div></h1>
-    <div class="grid-container" style = "display: grid; grid-template-columns: auto auto auto;">
-      <div class="grid-item" id="00" style="border-bottom: 2px solid black; border-right: 2px solid black; height: 50px;"></div>
-      <div class='grid-item' id="01" style="border-bottom: 2px solid black; border-right: 2px solid black; height: 50px"></div>
-      <div class="grid-item" id="02" style="border-bottom: 2px solid black; height: 50px"></div>
-      <div class='grid-item' id="10" style="border-bottom: 2px solid black; border-right: 2px solid black; height: 50px;"></div>
-      <div class="grid-item" id="11" style="border-bottom: 2px solid black; border-right: 2px solid black; height: 50px;"></div>
-      <div class='grid-item' id="12" style="border-bottom: 2px solid black; height: 50px"></div>
-      <div class="grid-item" id="20" style="border-right: 2px solid black; height: 50px"><br><br></div>
-      <div class='grid-item' id="21" style="border-right: 2px solid black; height: 50px"></div>
-      <div class="grid-item" id="22"></div>
+    <div class='names'>
+      <form>
+      <span><input type='text' id='xPlayer' placeholder='player X'></input></span>
+      <span><input type='text' id='oPlayer' placeholder='player O'></input></span>
+      <span><button id='start'>Start Game!</button></span>
+      </form>
     </div>
-    <form><button id="new">New Game</button></form>
-
+    <div class='game' hidden>
+      <h1><div id="winner" hidden></div></h1>
+      <div class="grid-container" style = "display: grid; grid-template-columns: auto auto auto;">
+        <div class="grid-item" id="00" style="border-bottom: 2px solid black; border-right: 2px solid black; height: 50px;"></div>
+        <div class='grid-item' id="01" style="border-bottom: 2px solid black; border-right: 2px solid black; height: 50px"></div>
+        <div class="grid-item" id="02" style="border-bottom: 2px solid black; height: 50px"></div>
+        <div class='grid-item' id="10" style="border-bottom: 2px solid black; border-right: 2px solid black; height: 50px;"></div>
+        <div class="grid-item" id="11" style="border-bottom: 2px solid black; border-right: 2px solid black; height: 50px;"></div>
+        <div class='grid-item' id="12" style="border-bottom: 2px solid black; height: 50px"></div>
+        <div class="grid-item" id="20" style="border-right: 2px solid black; height: 50px"><br><br></div>
+        <div class='grid-item' id="21" style="border-right: 2px solid black; height: 50px"></div>
+        <div class="grid-item" id="22"></div>
+      </div>
+      <form><button id="new">New Game</button></form>
+      <div class="wins">
+        <h2><u>SCORE</u></h2>
+        <h3><span id="x"></span></h3>
+        <h3><span id="l"></span></h3>
+      </div>
+    </div>
   </body>
 </html>
