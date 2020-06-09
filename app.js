@@ -10,9 +10,6 @@ var oWins = 0;
 var xPlayer = '';
 var oPlayer = '';
 
-//diagnol winners
-//R1[0],R2[1],R3[2]
-//R1[2],R2[1],R3[0]
 score();
 var updateVariablesOnWin = function() {
   previousWinner = turn;
@@ -98,6 +95,9 @@ el.addEventListener('click', (e)=>resetGame(e), false);
 el = document.getElementById('start');
 el.addEventListener('click', (e)=>startGame(e), false);
 
+el = document.getElementById('rotate');
+el.addEventListener('click', (e)=>rotate(e), false);
+
 
 //view
 var changeView = function(space) {
@@ -114,6 +114,12 @@ var displayWinner = function(player, toggle) {
     el.innerText = `${oPlayer} is the winner!!`;
   }
   el.hidden = toggle;
+}
+
+function rotate(e) {
+  e.preventDefault();
+  const el= document.getElementById('grid-container');
+  el.className += "rotate";
 }
 
 var resetGame = function(e) {

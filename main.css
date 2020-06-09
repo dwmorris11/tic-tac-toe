@@ -1,0 +1,35 @@
+#grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-top: 5%;
+}
+.rotate {
+  transform: rotate(90deg);
+}
+.grid-item {
+  font-style: garamond;
+  font-size: 100px;
+  color: purple;
+  text-align: center;
+  padding: 70px;
+}
+.inner {
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+  height: 50px;
+}
+
+.outer {
+  border-bottom: 5px solid black;
+  height: 50px
+}
+
+.innerBottom {
+  height: 50px;
+  border-right: 5px solid black;
+}
+
+.outerBottom {
+  height: 50px;
+}
+
